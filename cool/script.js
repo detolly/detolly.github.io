@@ -11,7 +11,7 @@ let bg = 15;
 function setup() {
     createCanvas(innerWidth, innerHeight);
     for(let i = 0; i < amount; i++) {
-        points[i] = new P(random(width), random(height), random(1)+0.5);
+        points[i] = new P(random(width), random(height), random(2)-1);
     }
 }
 
