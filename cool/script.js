@@ -10,6 +10,10 @@ let bg = 15;
 
 function setup() {
     createCanvas(innerWidth, innerHeight);
+    lighenUp = 600/1920*innerWidth;
+    theD = 150/1920*innerWidth;
+    //amount = 200/1920*innerWidth;
+
     for(let i = 0; i < amount; i++) {
         points[i] = new P(random(width), random(height), random(2)-1);
     }
