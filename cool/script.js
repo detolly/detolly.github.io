@@ -23,14 +23,18 @@ function setup() {
 // Make like a wind thing where they move with the wind
 // Have the angles be not random and based on the position of others for consistency and not pileup for example
 
+// one cool thing about this program is that I never indended for them to behave like stars but they kinda do because of pixels and floats.
+
 function draw() {
     background(bg);
-    for(let i = 0; i < points.length; i++) { //not technically perfect because some will be updated and some won't when they're checked, but it really doesn't matter for this application.
+    for(let i = 0; i < points.length; i++) {
         points[i].update();
         points[i].show();
         for(let u = points.length-1; u >= i; u--) {
             points[i].check(points[u]);
-        }
+            points[i].show();
+            points[u].show();
+        } //not technically perfect because some will be updated and some won't when they're checked, but it really doesn't matter for this application.
     }
 }
 
