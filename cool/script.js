@@ -1,18 +1,17 @@
 let points = [];
 let amount = 150;
-let speed = 2;
+//let speed = 1;
 
 let theD = 200;
-let maxDistMouse = 1578;
+let lighenUp = 700;
 
 let maxB = 140;
-let bg = 28;
+let bg = 15;
 
 function setup() {
     createCanvas(innerWidth, innerHeight);
-    maxDistMouse = sqrt(innerWidth*innerWidth+innerHeight*innerHeight);
     for(let i = 0; i < amount; i++) {
-        points[i] = new P(random(width), random(height));
+        points[i] = new P(random(width), random(height), random(1)+0.5);
     }
 }
 
@@ -32,7 +31,7 @@ function draw() {
 }
 
 class P {
-    constructor(x, y) {
+    constructor(x, y, speed) {
         this.x = x;
         this.y = y;
         this.distToMouse;
@@ -59,7 +58,7 @@ class P {
         var distBetweenTwoPoints = sqrt(pow(p.x-this.x, 2) + pow(p.y-this.y, 2));
         var distMouse = sqrt(pow(this.x-winMouseX, 2) + pow(this.y-winMouseY, 2));
         if (distBetweenTwoPoints < theD) {
-            var thing = map(distMouse, 0, 700, maxB, bg);
+            var thing = map(distMouse, 0, lighenUp, maxB, bg);
             thing = thing < bg ? bg : thing;
             stroke(thing);
             line(this.x, this.y, p.x, p.y);
