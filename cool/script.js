@@ -1,9 +1,9 @@
 let points = [];
-let amount = 150;
+let amount = 200;
 //let speed = 1;
 
-let theD = 200;
-let lighenUp = 700;
+let theD = 150;
+let lighenUp = 600;
 
 let maxB = 140;
 let bg = 15;
