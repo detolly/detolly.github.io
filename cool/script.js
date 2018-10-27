@@ -5,7 +5,7 @@ let amount = 350;
 let theD = 150;
 let lightenUp = 600;
 
-let maxB = 80;
+let maxB = 100;
 let bg = 15;
 
 function setup() {
