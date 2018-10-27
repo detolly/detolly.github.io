@@ -1,5 +1,5 @@
 let points = [];
-let amount = 200;
+let amount = 220;
 //let speed = 1;
 
 let theD = 150;
@@ -40,6 +40,8 @@ class P {
     constructor(x, y, speed) {
         this.x = x;
         this.y = y;
+        this.size = random(2)+1;
+        this.color = random(100)+155;
         this.distToMouse;
         var angle = random(TWO_PI);
         this.dir = createVector(cos(angle)*speed, sin(angle)*speed);
@@ -55,9 +57,9 @@ class P {
     }
 
     show() {
-        fill(255);
+        fill(this.color);
         noStroke();
-        ellipse(this.x, this.y, 2);
+        ellipse(this.x, this.y, this.size);
     }
 
     check(p) {
