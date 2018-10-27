@@ -12,7 +12,7 @@ function setup() {
     createCanvas(innerWidth, innerHeight);
     lighenUp = 600/1920*innerWidth;
     theD = 150/1920*innerWidth;
-    //amount = 200/1920*innerWidth;
+    //most screens have 16:9 aspect ratio so i'm only bothered with the width, and most screens only vary the width anyway.
 
     for(let i = 0; i < amount; i++) {
         points[i] = new P(random(width), random(height), random(2)-1);
@@ -32,8 +32,6 @@ function draw() {
         points[i].show();
         for(let u = points.length-1; u >= i; u--) {
             points[i].check(points[u]);
-            points[i].show();
-            points[u].show();
         } //not technically perfect because some will be updated and some won't when they're checked, but it really doesn't matter for this application.
     }
 }
