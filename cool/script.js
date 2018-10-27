@@ -1,25 +1,29 @@
 let points = [];
-let amount = 220;
+let amount = 350;
 //let speed = 1;
 
 let theD = 150;
-let lighenUp = 600;
+let lightenUp = 600;
 
-let maxB = 140;
+let maxB = 80;
 let bg = 15;
 
 function setup() {
     createCanvas(innerWidth, innerHeight);
-    lighenUp = 600/1920*innerWidth;
-    theD = 150/1920*innerWidth;
-    //most screens have 16:9 aspect ratio so i'm only bothered with the width, and most screens only vary the width anyway.
+    lightenUp = 300/1920*innerWidth;
+    theD = 120/1920*innerWidth;
+
+    // instead of doing sqrt
+    theD = theD*theD;
+    lightenUp = lightenUp*lightenUp;
+    // most screens have 16:9 aspect ratio so i'm only bothered with the width, and most screens only vary the width anyway.
 
     for(let i = 0; i < amount; i++) {
         points[i] = new P(random(width), random(height), random(2)-1);
     }
 }
 
-//TODO: (i'm never going to do this)
+// TODO: (i'm never going to do this)
 // Make like a wind thing where they move with the wind
 // Have the angles be not random and based on the position of others for consistency and not pileup for example
 
@@ -30,20 +34,20 @@ function draw() {
     for(let i = 0; i < points.length; i++) {
         points[i].update();
         points[i].show();
-        for(let u = points.length-1; u >= i; u--) {
+        for(let u = points.length-1; u > i; u--) {
             points[i].check(points[u]);
-        } //not technically perfect because some will be updated and some won't when they're checked, but it really doesn't matter for this application.
+        }
     }
 }
 
 class P {
     constructor(x, y, speed) {
+        let angle = random(TWO_PI);
         this.x = x;
         this.y = y;
-        this.size = random(2)+1;
+        this.size = random(1)+1;
         this.color = random(100)+155;
         this.distToMouse;
-        var angle = random(TWO_PI);
         this.dir = createVector(cos(angle)*speed, sin(angle)*speed);
     }
 
@@ -63,13 +67,14 @@ class P {
     }
 
     check(p) {
-        var distBetweenTwoPoints = sqrt(pow(p.x-this.x, 2) + pow(p.y-this.y, 2));
-        var distMouse = sqrt(pow(this.x-winMouseX, 2) + pow(this.y-winMouseY, 2));
+        var distBetweenTwoPoints = pow(p.x-this.x, 2) + pow(p.y-this.y, 2);
+        var distMouse = pow(this.x-winMouseX, 2) + pow(this.y-winMouseY, 2);
         if (distBetweenTwoPoints < theD) {
-            var thing = map(distMouse, 0, lighenUp, maxB, bg);
-            thing = thing < bg ? bg : thing;
-            stroke(thing);
-            line(this.x, this.y, p.x, p.y);
+            var thing = map(distMouse, 0, lightenUp, maxB, bg);
+            if (thing >= bg) {
+                stroke(thing);
+                line(this.x, this.y, p.x, p.y);
+            }
         }
     }
 }
