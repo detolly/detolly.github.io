@@ -48,7 +48,6 @@ class P {
         this.y = y;
         this.size = random(1)+1;
         this.color = random(100)+155;
-        this.distToMouse;
         this.dir = createVector(cos(angle)*speed, sin(angle)*speed);
     }
 
