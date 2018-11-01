@@ -5,13 +5,14 @@ let amount = 350;
 let theD = 150;
 let lightenUp = 600;
 
-let maxB = 100;
+let maxB = 140;
 let bg = 15;
 
 function setup() {
     createCanvas(innerWidth, innerHeight);
     lightenUp = 300/1920*innerWidth;
     theD = 120/1920*innerWidth;
+	amount = Math.max(amount, amount/1920*innerWidth);
 
     // instead of doing sqrt
     theD = theD*theD;
